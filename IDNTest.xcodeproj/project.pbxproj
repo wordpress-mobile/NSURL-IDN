@@ -30,8 +30,8 @@
 		E17BE239134F2FFD00165C3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E17BE23C134F2FFD00165C3D /* IDNTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IDNTest-Prefix.pch"; sourceTree = "<group>"; };
 		E17BE23D134F2FFD00165C3D /* IDNTest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = IDNTest.1; sourceTree = "<group>"; };
-		E17BE243134F301D00165C3D /* NSURL+IDN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+IDN.h"; sourceTree = "<group>"; };
-		E17BE244134F301D00165C3D /* NSURL+IDN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+IDN.m"; sourceTree = "<group>"; };
+		E17BE243134F301D00165C3D /* NSURL+IDN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+IDN.h"; path = "../NSURL+IDN.h"; sourceTree = "<group>"; };
+		E17BE244134F301D00165C3D /* NSURL+IDN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+IDN.m"; path = "../NSURL+IDN.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +226,7 @@
 				E17BE242134F2FFD00165C3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
