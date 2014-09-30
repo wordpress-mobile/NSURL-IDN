@@ -32,6 +32,7 @@
 		E17BE23D134F2FFD00165C3D /* IDNTest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = IDNTest.1; sourceTree = "<group>"; };
 		E17BE243134F301D00165C3D /* NSURL+IDN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+IDN.h"; path = "../NSURL+IDN.h"; sourceTree = "<group>"; };
 		E17BE244134F301D00165C3D /* NSURL+IDN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+IDN.m"; path = "../NSURL+IDN.m"; sourceTree = "<group>"; };
+		FFE0E2F319DAFBF50079E040 /* NSURL+IDN.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSURL+IDN.podspec"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +50,7 @@
 		E17BE227134F2FFD00165C3D = {
 			isa = PBXGroup;
 			children = (
+				FFE0E2F319DAFBF50079E040 /* NSURL+IDN.podspec */,
 				E17BE238134F2FFD00165C3D /* IDNTest */,
 				E17BE235134F2FFD00165C3D /* Frameworks */,
 				E17BE233134F2FFD00165C3D /* Products */,
