@@ -172,7 +172,7 @@ static BOOL validIDNCodeValue(unsigned codepoint)
 #ifdef DEBUG_toon    
     NSLog(@"Punycode encoded \"%@\" into \"%s\"", aString, outputBuffer);
 #endif    
-    return [ACEPrefix stringByAppendingString:[NSString stringWithUTF8String:outputBuffer]];
+    return [ACEPrefix stringByAppendingString:@(outputBuffer)];
 }
 
 + (NSString *)_punycodeDecode:(NSString *)aString;
@@ -336,7 +336,7 @@ static BOOL validIDNCodeValue(unsigned codepoint)
     NSUInteger partIndex, partCount = [parts count];
     
     for (partIndex = 0; partIndex < partCount; partIndex++)
-        [encodedParts addObject:[self _punycodeEncode:[[parts objectAtIndex:partIndex] precomposedStringWithCompatibilityMapping]]];
+        [encodedParts addObject:[self _punycodeEncode:[parts[partIndex] precomposedStringWithCompatibilityMapping]]];
     return [encodedParts componentsJoinedByString:@"."];
 }
 
@@ -354,7 +354,7 @@ static BOOL validIDNCodeValue(unsigned codepoint)
     for (labelIndex = 0; labelIndex < labelCount; labelIndex++) {
         NSString *label, *decodedLabel;
         
-        label = [labels objectAtIndex:labelIndex];
+        label = labels[labelIndex];
         decodedLabel = [self _punycodeDecode:label];
         if (!wasEncoded && ![label isEqualToString:decodedLabel])
             wasEncoded = YES;
@@ -374,11 +374,11 @@ static BOOL validIDNCodeValue(unsigned codepoint)
     NSString *hostname = aURL;
     NSMutableArray *components = [[aURL componentsSeparatedByString:@"://"] mutableCopy];
     if ([components count] > 1) {
-        hostname = [components objectAtIndex:1];
+        hostname = components[1];
     }
     hostname = [NSURL IDNEncodedHostname:hostname];
     if ([components count] > 1) {
-        [components replaceObjectAtIndex:1 withObject:hostname];
+        components[1] = hostname;
         return [components componentsJoinedByString:@"://"];
     } else {
         return hostname;
@@ -389,11 +389,11 @@ static BOOL validIDNCodeValue(unsigned codepoint)
     NSString *hostname = anIDNURL;
     NSMutableArray *components = [[anIDNURL componentsSeparatedByString:@"://"] mutableCopy];
     if ([components count] > 1) {
-        hostname = [components objectAtIndex:1];
+        hostname = components[1];
     }
     hostname = [NSURL IDNDecodedHostname:hostname];
     if ([components count] > 1) {
-        [components replaceObjectAtIndex:1 withObject:hostname];
+        components[1] = hostname;
         return [components componentsJoinedByString:@"://"];
     } else {
         return hostname;
