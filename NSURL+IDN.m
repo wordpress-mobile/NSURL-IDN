@@ -209,7 +209,6 @@ static BOOL validIDNCodeValue(unsigned codepoint)
     
     /* If there aren't any deltas, it's not a valid IDN label, because you're not supposed to encode something that didn't need to be encoded. */
     if (deltas.length == 0) {
-        [decoded release];
         return aString;
     }
     
@@ -244,11 +243,13 @@ static BOOL validIDNCodeValue(unsigned codepoint)
                 digit = punycodeDigitValue[enc[i]];
             else {
                 free(enc);
-                goto fail;
+                free(delta);
+                return aString;
             }
             if (digit < 0) { // unassigned value
                 free(enc);
-                goto fail;
+                free(delta);
+                return aString;
             }
             
             value += weight * digit;
@@ -273,7 +274,8 @@ static BOOL validIDNCodeValue(unsigned codepoint)
         
         if (!reset) {
             /* The deltas section ended in the middle of an integer: something's wrong */
-            goto fail;
+            free(delta);
+            return aString;
         }
         
         /* deltas[] now holds deltaCount integers */
@@ -293,39 +295,35 @@ static BOOL validIDNCodeValue(unsigned codepoint)
             codeValue += ( position / (decodedLabelLength + 1) );
             position = ( position % (decodedLabelLength + 1) );
             
-            if (!validIDNCodeValue(codeValue))
-                goto fail;
+            if (!validIDNCodeValue(codeValue)){
+                free(delta);
+                return aString;
+            }
             
             /* TODO: This will misbehave for code points greater than 0x0FFFF, because NSString uses a 16-bit encoding internally; the position values will be off by one afterwards [actually, we'll just get bad results because I'm using initWithCharacters:length: (BMP-only) instead of initWithCharacter: (all planes but only exists in OmniFoundation)] */
             ch[0] = codeValue;
             NSString *insertion = [[NSString alloc] initWithCharacters:ch length:1];
             [decoded replaceCharactersInRange:(NSRange){position, 0} withString:insertion];
-            [insertion release];
             
             position ++;
             decodedLabelLength ++;
         }
     }
     
-    if ([decoded length] != decodedLabelLength)
-        goto fail;
+    if ([decoded length] != decodedLabelLength) {
+        free(delta);
+        return aString;
+    }
     
     free(delta);
     
     NSString *normalized = [decoded precomposedStringWithCompatibilityMapping];  // Applies normalization KC
     if ([normalized compare:decoded options:NSLiteralSearch] != NSOrderedSame) {
         // Decoded string was not normalized, therefore could not have been the result of decoding a correctly encoded IDN.
-        [decoded release];
         return aString;
     } else {
-        [decoded autorelease];
         return normalized;
     }
-    
-fail:
-    free(delta);
-    [decoded release];
-    return aString;
 }
 
 + (NSString *)IDNEncodedHostname:(NSString *)aHostname;
@@ -365,18 +363,16 @@ fail:
     
     if (wasEncoded) {
         NSString *result = [decodedLabels componentsJoinedByString:@"."];
-        [decodedLabels release];
         return result;
     } else {
         /* This is by far the most common case. */
-        [decodedLabels release];
         return anIDNHostname;
     }
 }
 
 + (NSString *)IDNEncodedURL:(NSString *)aURL {
     NSString *hostname = aURL;
-    NSMutableArray *components = [[[aURL componentsSeparatedByString:@"://"] mutableCopy] autorelease];
+    NSMutableArray *components = [[aURL componentsSeparatedByString:@"://"] mutableCopy];
     if ([components count] > 1) {
         hostname = [components objectAtIndex:1];
     }
@@ -391,7 +387,7 @@ fail:
 
 + (NSString *)IDNDecodedURL:(NSString *)anIDNURL {
     NSString *hostname = anIDNURL;
-    NSMutableArray *components = [[[anIDNURL componentsSeparatedByString:@"://"] mutableCopy] autorelease];
+    NSMutableArray *components = [[anIDNURL componentsSeparatedByString:@"://"] mutableCopy];
     if ([components count] > 1) {
         hostname = [components objectAtIndex:1];
     }

@@ -19,13 +19,13 @@ void testIDN(NSString *decoded, NSString *expected) {
 
 int main (int argc, const char * argv[])
 {
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
 
-    testIDN(@"http://test.soymaño.com", @"http://test.xn--soymao-0wa.com");
-    testIDN(@"إختبار", @"xn--kgbechtv");
-    testIDN(@"испытание", @"xn--80akhbyknj4f");
+        testIDN(@"http://test.soymaño.com", @"http://test.xn--soymao-0wa.com");
+        testIDN(@"إختبار", @"xn--kgbechtv");
+        testIDN(@"испытание", @"xn--80akhbyknj4f");
 
-    [pool drain];
+    }
     return 0;
 }
 
