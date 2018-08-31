@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.license   = 'MIT'
   s.summary   = 'Support for IDN (punycode) in NSURL'
   s.homepage  = 'https://github.com/wordpress-mobile/NSURL-IDN.git'
-  s.authors    = { 'WordPress-Mobile' => 'mobile@automattic.com'}
+  s.authors    = { 'WordPress' => 'mobile@automattic.com'}
   s.source    = { :git => 'https://github.com/wordpress-mobile/NSURL-IDN.git' , :tag => '0.3'}
   s.requires_arc = true
   s.source_files = 'NSURL*.{h,m}'
