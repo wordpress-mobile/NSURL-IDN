@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = 'NSURL+IDN'
-  s.version   = '0.3'
+  s.version   = '0.4'
   s.license   = 'MIT'
   s.summary   = 'Support for IDN (punycode) in NSURL'
   s.homepage  = 'https://github.com/wordpress-mobile/NSURL-IDN.git'
