@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.homepage      = 'https://github.com/wordpress-mobile/NSURL-IDN'
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
-  s.author        = { 'The WordPress Mobile Team' => 'mobile@automattic.com' }
+  s.author        = { 'The WordPress Mobile Team' => 'mobile@wordpress.org' }
 
   s.source        = { :git => 'https://github.com/wordpress-mobile/NSURL-IDN.git', :tag => s.version.to_s }
   s.source_files = 'NSURL*.{h,m}'
