@@ -16,5 +16,9 @@ DerivedData
 .idea/
 *.hmap
 *.xccheckout
+
 #CocoaPods
 Pods
+
+# Swift Package Manager
+.swiftpm

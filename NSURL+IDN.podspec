@@ -13,6 +13,18 @@ Pod::Spec.new do |s|
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   s.author        = { 'The WordPress Mobile Team' => 'mobile@wordpress.org' }
 
+  s.ios.deployment_target = '11'
+  s.macos.deployment_target = '10.13'
+  s.tvos.deployment_target = '11'
+
   s.source        = { :git => 'https://github.com/wordpress-mobile/NSURL-IDN.git', :tag => s.version.to_s }
-  s.source_files = 'NSURL*.{h,m}'
+  s.source_files = 'Sources/NSURL+IDN/*.{h,m}'
+  s.public_header_files = 'Sources/NSURL+IDN/*.h'
+
+  s.test_spec do |test|
+    test.source_files = 'Tests/IDNTest/*.m'
+    test.user_target_xcconfig = {
+      'CODE_SIGNING_ALLOWED': 'NO'
+    }
+  end
 end
