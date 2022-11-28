@@ -1,11 +1,3 @@
-//
-//  main.m
-//  IDNTest
-//
-//  Created by Jorge Bernal on 4/8/11.
-//  Copyright 2011 Automattic. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
