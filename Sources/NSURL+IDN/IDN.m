@@ -11,7 +11,7 @@
 // distributed with this project and can also be found at
 // <http://www.omnigroup.com/developer/sourcecode/sourcelicense/>.
 
-#import "NSURL+IDN.h"
+#import "IDN.h"
 
 #ifndef MAX_HOSTNAME_LEN
 #ifdef NI_MAXHOST
