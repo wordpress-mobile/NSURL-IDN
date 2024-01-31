@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '11'
   s.macos.deployment_target = '10.13'
-  s.tvos.deployment_target = '11'
+  # s.tvos.deployment_target = '11'
 
   s.source = { git: 'https://github.com/wordpress-mobile/NSURL-IDN.git', tag: s.version.to_s }
   s.source_files = 'Sources/NSURL+IDN/*.{h,m}'
