@@ -20,8 +20,8 @@ Pod::Spec.new do |s|
   # s.tvos.deployment_target = '11'
 
   s.source = { git: 'https://github.com/wordpress-mobile/NSURL-IDN.git', tag: s.version.to_s }
-  s.source_files = 'Sources/NSURL+IDN/*.{h,m}'
-  s.public_header_files = 'Sources/NSURL+IDN/*.h'
+  s.source_files = 'Sources/NSURL-IDN/*.{h,m}'
+  s.public_header_files = 'Sources/NSURL-IDN/*.h'
 
   s.test_spec do |test|
     test.source_files = 'Tests/IDNTest/*.m'
