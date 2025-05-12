@@ -7,7 +7,7 @@ platform :ios do
   lane :test do
     run_tests(
       package_path: '.',
-      scheme: 'NSURL+IDN',
+      scheme: 'NSURL-IDN',
       device: 'iPhone 14',
       prelaunch_simulator: true,
       buildlog_path: File.join(__dir__, '.build', 'logs'),
