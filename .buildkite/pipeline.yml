@@ -3,7 +3,7 @@ common_params:
   plugins: &common_plugins
   - automattic/a8c-ci-toolkit#2.17.0
   env: &common_env
-    IMAGE_ID: xcode-15.2
+    IMAGE_ID: xcode-26.6
 
 agents:
   queue: mac # Run on the macOS runner by default
